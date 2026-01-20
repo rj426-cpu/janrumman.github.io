@@ -15,7 +15,7 @@ I'm a sophomore at Cornell University's College of Engineering, majoring in Elec
 
 - **Cornell Autonomous Drone Team** - Debugging and integrating electrical systems for 3" and 5" quadrotors for security surveillance
 - **Symbiotic Engineering & Analysis Lab** - Configuring power system capacity expansion models using GenX and PowerGenome
-- **TinyRV1 Processor** - Custom RISC-V-inspired single-cycle processor with specialized accelerator (3-5x speedup)
+- **TinyRV1 Processor** - Custom RISC-V-inspired single-cycle processor with specialized accelerator 
 
 ## 🚀 Upcoming Projects
 
