@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+#=========================================================================
+# tinyrv1-assemble [options] <asm-file>
+#=========================================================================
+#
+#  -h --help         Display this message
+#  -v --verbose      Verbose mode
+#
+# Assemble a TinyRV1 assembly file into a TinyRV1 binary file.
+#
+# Author : Christopher Batten
+# Date   : October 31, 2025
+#
+
+# Hack to add project root to python path
+
+import os
+import sys
+
+scripts_dir = os.path.dirname( os.path.abspath( __file__ ) )
+while scripts_dir:
+  if os.path.exists( scripts_dir + os.path.sep + "configure.ac" ):
+    sys.path.insert(0,scripts_dir)
+    break
+  scripts_dir = os.path.dirname(scripts_dir)
+
+import argparse
+import re
+
+from scripts.assemble.tinyrv2_encoding import assemble
+
+#-------------------------------------------------------------------------
+# Command line processing
+#-------------------------------------------------------------------------
+
+class ArgumentParserWithCustomError(argparse.ArgumentParser):
+  def error( self, msg = "" ):
+    if ( msg ): print("\n ERROR: %s" % msg)
+    print("")
+    file = open( sys.argv[0] )
+    for ( lineno, line ) in enumerate( file ):
+      if ( line[0] != '#' ): sys.exit(msg != "")
+      if ( (lineno == 2) or (lineno >= 4) ): print( line[1:].rstrip("\n") )
+
+def parse_cmdline():
+  p = ArgumentParserWithCustomError( add_help=False )
+  p.add_argument( "-v", "--verbose",     action="store_true" )
+  p.add_argument( "-h", "--help",        action="store_true" )
+  p.add_argument( "-o", "--output",      type=str )
+  p.add_argument( "asm_file" )
+  opts = p.parse_args()
+  if opts.help: p.error()
+  return opts
+
+#-------------------------------------------------------------------------
+# Main
+#-------------------------------------------------------------------------
+
+def main():
+  opts = parse_cmdline()
+
+  if not os.path.exists( opts.asm_file ):
+    print(f"\n ERROR: Assembly file {opts.asm_file} does not exist!\n");
+    return
+
+  with open( opts.asm_file, 'r' ) as f:
+    file_content = f.read()
+    sparse_mem_image = assemble(file_content)
+    mem_image = sparse_mem_image.get_section(".text").data
+    try:
+      data = sparse_mem_image.get_section(".data").data
+      mem_image = mem_image + data
+    except:
+      pass
+
+  asm_strs = []
+  for i in range( 0, len(mem_image), 4 ):
+    word_as_bytes = mem_image[i:i+4]
+    word_as_int = int.from_bytes( word_as_bytes, 'little' )
+    word_as_str = f"{word_as_int:032b}"
+    asm_strs.append('_'.join(word_as_str[j:j+8] for j in range(0, 32, 8)))
+
+  if ( opts.output ):
+    with open( opts.output, 'w' ) as f:
+      f.write( "\n".join(asm_strs) + "\n" )
+  else:
+    for asm_str in asm_strs:
+      print(asm_str)
+
+if __name__ == "__main__":
+    main()
+
+

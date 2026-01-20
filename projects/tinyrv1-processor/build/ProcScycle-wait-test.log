@@ -1,0 +1,30 @@
+
+test_case_1_basic_wait25                 [32mpassed[0m (  8 checks)
+test_case_2_basic_wait50                 [32mpassed[0m (  8 checks)
+test_case_3_basic_wait75                 [32mpassed[0m (  8 checks)
+test_case_4_add_wait25                   [32mpassed[0m (  8 checks)
+test_case_5_add_wait50                   [32mpassed[0m (  8 checks)
+test_case_6_add_wait75                   [32mpassed[0m (  8 checks)
+test_case_7_mul_wait25                   [32mpassed[0m (  6 checks)
+test_case_8_mul_wait50                   [32mpassed[0m (  6 checks)
+test_case_9_mul_wait75                   [32mpassed[0m (  6 checks)
+test_case_10_lw_wait25                   [32mpassed[0m ( 16 checks)
+test_case_11_lw_wait50                   [32mpassed[0m ( 16 checks)
+test_case_12_lw_wait75                   [32mpassed[0m ( 16 checks)
+test_case_13_sw_wait25                   [32mpassed[0m ( 13 checks)
+test_case_14_sw_wait50                   [32mpassed[0m ( 13 checks)
+test_case_15_sw_wait75                   [32mpassed[0m ( 13 checks)
+test_case_16_jal_wait25                  [32mpassed[0m ( 13 checks)
+test_case_17_jal_wait50                  [32mpassed[0m ( 13 checks)
+test_case_18_jal_wait75                  [32mpassed[0m ( 13 checks)
+test_case_19_jr_wait25                   [32mpassed[0m ( 14 checks)
+test_case_20_jr_wait50                   [32mpassed[0m ( 14 checks)
+test_case_21_jr_wait75                   [32mpassed[0m ( 14 checks)
+test_case_22_bne_wait25                  [32mpassed[0m ( 13 checks)
+test_case_23_bne_wait50                  [32mpassed[0m ( 13 checks)
+test_case_24_bne_wait75                  [32mpassed[0m ( 13 checks)
+
+num_test_cases_passed = 24
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:293: $finish called at 21421 (1s)

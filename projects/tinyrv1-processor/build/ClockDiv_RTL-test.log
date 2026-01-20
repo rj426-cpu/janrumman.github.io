@@ -1,0 +1,10 @@
+
+test_case_1_divide2                      [32mpassed[0m (  6 checks)
+test_case_2_divide4                      [32mpassed[0m ( 12 checks)
+test_case_3_divide8                      [32mpassed[0m ( 24 checks)
+test_case_4_divide1024                   [32mpassed[0m (3072 checks)
+
+num_test_cases_passed =  4
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:293: $finish called at 31261 (1s)

@@ -1,0 +1,12 @@
+
+test_case_1_basic                        [32mpassed[0m (  5 checks)
+test_case_2_directed_ones                [32mpassed[0m ( 18 checks)
+test_case_3_directed_values              [32mpassed[0m (  8 checks)
+test_case_4_directed_enable              [32mpassed[0m (  9 checks)
+test_case_5_directed_reset               [32mpassed[0m ( 15 checks)
+test_case_6_xprop                        [32mpassed[0m (  4 checks)
+
+num_test_cases_passed =  6
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:293: $finish called at 771 (1s)

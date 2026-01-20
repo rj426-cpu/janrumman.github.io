@@ -1,0 +1,14 @@
+
+test_case_1_basic                        [32mpassed[0m (  2 checks)
+test_case_2_zero_and_small_sums          [32mpassed[0m (  3 checks)
+test_case_3_carry_and_overflow_cases     [32mpassed[0m (  3 checks)
+test_case_4_nibble_boundary_cases        [32mpassed[0m (  2 checks)
+test_case_5_alternate_cases              [32mpassed[0m (  2 checks)
+test_case_6_different_ones_cases         [32mpassed[0m (  5 checks)
+test_case_7_random                       [32mpassed[0m ( 50 checks)
+test_case_8_xprop                        [32mpassed[0m (  7 checks)
+
+num_test_cases_passed =  8
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:131: $finish called at 980 (1s)

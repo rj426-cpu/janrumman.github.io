@@ -1,0 +1,11 @@
+
+test_case_1_basic                        [32mpassed[0m ( 16 checks)
+test_case_2_song_end                     [32mpassed[0m ( 20 checks)
+test_case_3_two_songs                    [32mpassed[0m ( 62 checks)
+test_case_4_val_not_rdy                  [32mpassed[0m ( 35 checks)
+test_case_5_long_song_end                [32mpassed[0m (770 checks)
+
+num_test_cases_passed =  5
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:293: $finish called at 9181 (1s)

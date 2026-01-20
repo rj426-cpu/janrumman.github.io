@@ -1,0 +1,13 @@
+
+test_case_1_basic                        [32mpassed[0m ( 10 checks)
+test_case_2_done_immediate               [32mpassed[0m (  5 checks)
+test_case_3_wait_high_hold               [32mpassed[0m (  5 checks)
+test_case_4_wait_low_hold                [32mpassed[0m (  9 checks)
+test_case_5_delayed_done                 [32mpassed[0m (  8 checks)
+test_case_6_xprop                        [32mpassed[0m (  5 checks)
+test_case_7_random                       [32mpassed[0m ( 50 checks)
+
+num_test_cases_passed =  7
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:293: $finish called at 1131 (1s)

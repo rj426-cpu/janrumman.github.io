@@ -1,0 +1,9 @@
+
+test_case_1_basic                        [32mpassed[0m (  2 checks)
+test_case_2_exhaustive                   [32mpassed[0m (  4 checks)
+test_case_3_xprop                        [32mpassed[0m (  9 checks)
+
+num_test_cases_passed =  3
+num_test_cases_failed =  0
+
+../ece2300/ece2300-test.v:131: $finish called at 240 (1s)
