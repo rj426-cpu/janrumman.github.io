@@ -73,4 +73,3 @@ Feel free to reach out if you'd like to collaborate on projects or discuss engin
 
 ---
 
-*"Building the future, one circuit at a time."* ⚡🔌
