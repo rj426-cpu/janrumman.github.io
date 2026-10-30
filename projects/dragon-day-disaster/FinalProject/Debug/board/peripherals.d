@@ -1,0 +1,35 @@
+board/peripherals.o board/peripherals.d: ../board/peripherals.c \
+ ../board/peripherals.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_common.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/fsl_device_registers.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/MKL46Z4.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/core_cm0plus.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_version.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_compiler.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_gcc.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/system_MKL46Z4.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/MKL46Z4_features.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_clock.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_common.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_gpio.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_port.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_i2c.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_lpsci.h \
+ /Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_clock.h
+../board/peripherals.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_common.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/fsl_device_registers.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/MKL46Z4.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/core_cm0plus.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_version.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_compiler.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/cmsis_gcc.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/system_MKL46Z4.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/CMSIS/MKL46Z4_features.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_clock.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_common.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_gpio.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_port.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_i2c.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_lpsci.h:
+/Users/ariellai/Desktop/Spring\ 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_clock.h:

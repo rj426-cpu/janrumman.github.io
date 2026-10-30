@@ -1,0 +1,3 @@
+../source/3140_accel.c:25:5:ACCEL_ReadWhoAmI	48	static
+../source/3140_accel.c:97:5:ACCEL_getDefaultConfig	8	static
+../source/3140_accel.c:154:5:ACCEL_getAccelDat	32	static

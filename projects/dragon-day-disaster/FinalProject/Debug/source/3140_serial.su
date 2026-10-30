@@ -1,0 +1,3 @@
+../source/3140_serial.c:22:6:uart_init	16	static
+../source/3140_serial.c:47:6:uart_putChar	16	static
+../source/3140_serial.c:56:6:uart_putString	16	static

@@ -1,0 +1,9 @@
+/Users/ariellai/Desktop/Spring 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_clock.h:601:20:CLOCK_EnableClock	24	static
+/Users/ariellai/Desktop/Spring 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_port.h:268:20:PORT_SetPinConfig	32	static
+/Users/ariellai/Desktop/Spring 2026/ECE3140/FinalProject/FinalProject/drivers/fsl_gpio.h:161:20:GPIO_PinWrite	24	static
+../source/3140_i2c.c:21:6:i2c_master_callback	24	static
+../source/3140_i2c.c:35:13:i2c_release_bus_delay	16	static
+../source/3140_i2c.c:53:5:I2C_ReadRegs	64	static
+../source/3140_i2c.c:96:5:I2C_WriteReg	56	static
+../source/3140_i2c.c:128:6:I2C_ReleaseBus	16	static
+../source/3140_i2c.c:180:5:I2C_Init	24	static

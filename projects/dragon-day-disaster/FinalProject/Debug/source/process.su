@@ -1,0 +1,5 @@
+/Users/ariellai/Desktop/Spring 2026/ECE3140/FinalProject/FinalProject/CMSIS/core_cm0plus.h:733:22:__NVIC_EnableIRQ	16	static
+../source/process.c:14:13:process_free	16	static
+../source/process.c:20:6:process_start	8	static
+../source/process.c:34:5:process_create	24	static
+../source/process.c:56:16:process_select	16	static

@@ -1,0 +1,5 @@
+../source/3140_concur.c:55:6:enqueue	24	static
+../source/3140_concur.c:77:14:dequeue	24	static
+../source/3140_concur.c:99:5:is_empty	16	static
+../source/3140_concur.c:112:16:process_stack_init	24	static
+../source/3140_concur.c:155:6:process_stack_free	24	static
