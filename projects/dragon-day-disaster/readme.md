@@ -1,93 +1,164 @@
-# Chrome Dinosaur Game
-ECE 3140 / CS 3420 Final Project
-Team: Ariel, Rumman
+# 🐉 Dragon Day Disaster — Motion-Controlled Game
 
----
+**ECE 3140 / CS 3420 Final Project | Cornell University | Spring 2026**
+
+**Team:** Ariel Lai and Rumman Jan
 
 ## Project Overview
-The FRDM-KL46Z board is strapped to the player's body and detects physical jumps
-via the onboard MMA8451Q accelerometer over I2C. When a jump is detected, the board
-sends "J\n" over USB serial at 115200 baud to a Python pygame script running on the
-laptop, which controls the game.
+
+Dragon Day Disaster is a two-player motion-controlled game developed using two FRDM-KL46Z microcontroller boards and a Python-based game interface.
+
+Instead of using traditional keyboard controls, players interact with the game through physical movements detected by the onboard MMA8451Q accelerometers. The microcontrollers process motion data and transmit events over USB serial communication to a laptop running the game.
+
+The project combines embedded programming, real-time scheduling, concurrent processes, sensor interfacing, and multithreaded Python programming.
+
+## System Architecture
+
+The system consists of three main components:
+
+**1. Embedded Controllers — FRDM-KL46Z**
+
+- Two ARM Cortex-M-based microcontroller boards serve as motion controllers.
+- Onboard MMA8451Q accelerometers capture player movement through I2C.
+- Firmware processes sensor measurements to identify motion events.
+- Detected events are transmitted to the host computer through USB serial communication.
+
+**2. Serial Communication**
+
+- Each microcontroller communicates with the laptop through a serial interface.
+- Serial communication operates at 115200 baud.
+- Motion events are encoded as short messages, such as `J\n` for jumping.
+- The host application interprets incoming messages as player actions.
+
+**3. Python Game Application**
+
+- A Python application handles gameplay and visual rendering.
+- Multithreaded serial interfaces process incoming events from the two controllers.
+- Physical movement is translated into real-time game actions.
+
+## Embedded Systems Implementation
+
+### Accelerometer Interface
+
+The FRDM-KL46Z communicates with its onboard MMA8451Q accelerometer over I2C.
+
+- Initialized the accelerometer and configured sensor communication.
+- Read raw X, Y, and Z acceleration measurements.
+- Calibrated movement thresholds using recorded sensor data.
+- Implemented threshold-based motion detection with cooldown logic to reduce repeated triggers.
+
+For the initial jump detection implementation, a Y-axis measurement below approximately `-2500` was used to identify a jump.
+
+### Real-Time Scheduling and Concurrency
+
+The embedded software incorporates real-time scheduling and concurrent processes for managing sensor sampling, motion detection, and communication.
+
+This separates time-sensitive sensor processing from other firmware operations and supports responsive interaction between the hardware and game application.
+
+### Serial Communication
+
+The controllers communicate with the Python host through USB serial connections.
+
+| Message | Action |
+|---|---|
+| `J\n` | Jump event |
+| `D\n` | Duck event (included in the development protocol) |
+
+The host receives and interprets controller messages to update game state.
+
+## Python Game Development
+
+The host-side application provides the game interface and handles incoming hardware events.
+
+- Developed Python serial communication interfaces for microcontroller input.
+- Integrated motion-based controls into the game.
+- Used multithreading to process events from two independent controllers.
+- Managed player inputs and gameplay updates through the host application.
+
+## Technologies Used
+
+| Category | Technologies |
+|---|---|
+| Microcontrollers | FRDM-KL46Z, ARM Cortex-M |
+| Sensors | MMA8451Q Accelerometer |
+| Embedded Programming | C, ARM Assembly |
+| Communication | I2C, UART, USB Serial |
+| Real-Time Systems | Scheduling, Concurrent Processes |
+| Game Development | Python, pygame |
+| Development Tools | MCUXpresso IDE, Git/GitHub |
+
+## Team Contributions
+
+**Ariel Lai — Embedded Controller Development**
+
+- Microcontroller setup and firmware development.
+- Accelerometer initialization and I2C interfacing.
+- Motion detection and sensor calibration.
+- Embedded serial communication and hardware testing.
+
+**Rumman Jan — Python Game and Host Integration**
+
+- Python game application development.
+- Serial communication between the laptop and embedded controllers.
+- Integration of hardware motion events with game controls.
+- Host-side multithreading and event processing.
+
+Both team members contributed to system integration, debugging, and testing.
+
+## Running the Project
+
+### Embedded Controller
+
+1. Open the embedded firmware project in MCUXpresso IDE.
+2. Configure and build the project for the FRDM-KL46Z.
+3. Flash the firmware to the microcontroller boards.
+4. Connect the boards to the laptop through USB.
+
+### Python Application
+
+Install the required Python dependencies:
+
+```bash
+python3 -m pip install pygame pyserial
+```
+
+Run the game:
+
+```bash
+python3 game.py
+```
+
+The correct serial ports must be configured for the connected microcontroller boards.
+
+## Repository Structure
+
+```text
+dragon-day-disaster/
+├── FinalProject/          # MCUXpresso embedded firmware
+├── Assets/                # Game assets
+├── game.py                # Python game application
+├── python_serial.py       # Serial communication utilities
+├── read_serial.py         # Serial testing
+├── 3140_accel.c           # Accelerometer driver
+├── 3140_accel.h
+├── 3140_i2c.c             # I2C communication
+├── 3140_i2c.h
+├── 3140_serial.c          # Serial interface
+├── 3140_serial.h
+└── readme.md
+```
+
+## Key Concepts
+
+- Embedded C programming on ARM Cortex-M microcontrollers
+- I2C-based accelerometer interfacing
+- Real-time scheduling and concurrency
+- Serial communication between embedded hardware and Python
+- Multithreaded host-side event processing
+- Hardware/software integration for interactive applications
 
 ---
 
-## Week 1 Progress
+**Cornell University — ECE 3140 / CS 3420, Spring 2026**
 
-### Board Side (Ariel)
-- MCUXpresso project set up with all required lab files
-- Accelerometer initialized over I2C
-- Raw X/Y/Z values streamed over serial to laptop
-- Jump detection working — Y axis spike below -2500 triggers "J\n"
-- Calibration tool built to find and tune thresholds
-- Serial communication verified end to end at 115200 baud
-
-### Laptop Side (Rumman) 
-- Python serial reading script set up and receiving board data
-- pygame window in progress
-
----
-
-## File Descriptions
-
-### Code
-| File | Description |
-|------|-------------|
-| `calibrate.c` | Streams raw X/Y/Z accelerometer data over serial. Use this to tune jump thresholds. Flash this, run python_serial.py, jump around, observe Y axis spikes. |
-| `python_serial.py` | Python script that reads serial data from the board. Prints raw accelerometer values and prints "JUMP DETECTED" when it receives "J\n". Run this on the laptop while the board is flashed. |
-
-### Lab-Provided Files 
-| File | Description |
-|------|-------------|
-| `3140_accel.c / .h` | Accelerometer driver for MMA8451Q. Provides `ACCEL_getDefaultConfig()` and `ACCEL_getAccelDat()`. |
-| `3140_i2c.c / .h` | I2C driver. Provides `I2C_Init()` for communication with the accelerometer. |
-| `3140_concur.c / .h` | Concurrency library. Provides process creation, scheduling, and context switching. Will be used in Week 2. |
-| `3140_serial.c / .h` | Original serial library from labs. Not currently used — replaced by direct UART0 access via `BOARD_InitDebugConsole()` from the SDK. |
-| `led.c / .h` | LED control functions. Currently disabled — `led_init()` conflicts with `BOARD_InitBootPins()`. Will need to be resolved. |
-| `led_lowlevel.s` | Low-level assembly for LED control. Required by `led.c`. |
-| `process.c / .h` | Process management for concurrency. Will be used in Week 2. |
-| `realtime.h` | Real-time scheduling header. Will be used in Week 2 for PIT timer-based sampling. |
-| `3140.s` | Low-level assembly startup code. |
-| `mtb.c` | Micro Trace Buffer — debug utility, auto-included by MCUXpresso. |
-| `semihost_hardfault.c` | Handles hard faults in semihosting mode. Auto-included by MCUXpresso. |
-| `Lab5.c` | Reference code from Lab 5 (excluded from build). Contains PIT timer and concurrency examples useful for Week 2. |
-| `process_ref.c` | Reference process implementation (excluded from build). |
-| `serialmonitorprint.c` | Earlier serial test file (excluded from build). |
-
----
-
-## Serial Protocol
-| Message | Direction | Meaning |
-|---------|-----------|---------|
-| `J\n` | Board → Laptop | Jump detected |
-| `D\n` | Board → Laptop | Duck detected (planned Week 3) |
-
----
-
-## Jump Detection
-- Board worn on body, Y axis is vertical
-- At rest: Y ≈ -1900
-- On jump: Y spikes below -2500
-- Cooldown of 15 polls after each jump to prevent double triggers
-
----
-
-## How to Run
-1. Open project in MCUXpresso (must use **Default Board Files**)
-2. Build and flash using GUI Flash Tool (not debugger)
-3. Run `python3 python_serial.py` on laptop
-4. Strap board to body and jump
-
----
-
-## Known Issues
-- `led_init()` conflicts with `BOARD_InitBootPins()` — LEDs currently disabled
-- `3140_serial.c` uart_init uses wrong pins for this project — replaced by SDK init
-
----
-
-## Week 2 Plan
-- Add RT scheduling via PIT timer for precise 100Hz accelerometer sampling
-- Add concurrency — three processes: sample, detect, transmit
-- Add locks to protect shared accelerometer buffer
-- Connect "J\n" serial event to dino jump in pygame
+Developed by Ariel Lai and Rumman Jan.
