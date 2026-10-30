@@ -1,0 +1,58 @@
+; Monochrome VGA: eight pixels per byte, LSB first.
+.program rgb
+.define PUBLIC vid_freq 150
+
+; C loads ISR with 639 and empties OSR before starting.
+.wrap_target
+    mov x, isr [1]       ; Reload count; finish last pixel hold
+    set pins, 0         ; Black during blanking
+    wait 1 irq 1 [2]    ; Wait for active scanline
+
+pixel:
+    out y, 1            ; Read one framebuffer bit
+    jmp !y black
+
+    set pins, 15 [1]    ; White: all four color pins high
+    jmp next_pixel
+
+black:
+    set pins, 0 [2]     ; Black: all four color pins low
+
+next_pixel:
+    jmp x-- pixel
+.wrap
+
+% c-sdk {
+#include "hardware/clocks.h"
+
+static inline void rgb_program_init(PIO pio, uint sm,
+                                    uint offset, uint pin)
+{
+    pio_sm_config c = rgb_program_get_default_config(offset);
+
+    // SET controls the existing four VGA color pins.
+    sm_config_set_set_pins(&c, pin, 4);
+
+    // Shift right: pixel 0 is the least-significant bit.
+    // Automatically fetch another FIFO word after eight bits.
+    sm_config_set_out_shift(&c, true, true, 8);
+
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+
+    // Six instruction cycles per pixel:
+    // 150 MHz / 6 = 25 MHz nominal pixel clock.
+    sm_config_set_clkdiv(
+        &c,
+        (float)clock_get_hz(clk_sys) / 150000000.0f
+    );
+
+    for (uint i = 0; i < 4; ++i) {
+        pio_gpio_init(pio, pin + i);
+    }
+
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 4, true);
+    pio_sm_init(pio, sm, offset, &c);
+
+    // The VGA driver starts all three state machines together.
+}
+%}
